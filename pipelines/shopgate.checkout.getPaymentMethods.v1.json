@@ -4,11 +4,7 @@
     "id": "shopgate.checkout.getPaymentMethods.v1",
     "public": true,
     "input": [
-      {"key": "items", "id": "10", "optional": true},
-      {"key": "shippingAddress", "id": "11", "optional": true},
-      {"key": "billingAddress", "id": "12", "optional": true},
-      {"key": "shippingMethod", "id": "13", "optional": true},
-      {"key": "paymentMethod", "id": "14", "optional": true}
+      {"key": "checkout", "id": "10"}
     ],
     "output": [
       {"key": "methods", "id": "20"}
@@ -28,12 +24,8 @@
         "id": "@shopgate/payment",
         "path": "@shopgate/payment/payment/mocked/paypal.js",
         "input": [
-          {"key": "methods", "id": "20"},
-          {"key": "items", "id": "10", "optional": true},
-          {"key": "shippingAddress", "id": "11", "optional": true},
-          {"key": "billingAddress", "id": "12", "optional": true},
-          {"key": "shippingMethod", "id": "13", "optional": true},
-          {"key": "paymentMethod", "id": "14", "optional": true}
+          {"key": "checkout", "id": "10"},
+          {"key": "methods", "id": "20"}
         ],
         "output": [
           {"key": "methods", "id": "20"}
@@ -44,12 +36,8 @@
         "id": "@shopgate/payment",
         "path": "@shopgate/payment/payment/mocked/authorizeNet.js",
         "input": [
-          {"key": "methods", "id": "20"},
-          {"key": "items", "id": "10", "optional": true},
-          {"key": "shippingAddress", "id": "11", "optional": true},
-          {"key": "billingAddress", "id": "12", "optional": true},
-          {"key": "shippingMethod", "id": "13", "optional": true},
-          {"key": "paymentMethod", "id": "14", "optional": true}
+          {"key": "checkout", "id": "10"},
+          {"key": "methods", "id": "20"}
         ],
         "output": [
           {"key": "methods", "id": "20"}
@@ -60,12 +48,8 @@
         "id": "@shopgate/payment",
         "path": "@shopgate/payment/payment/mocked/cashOnDelivery.js",
         "input": [
-          {"key": "methods", "id": "20"},
-          {"key": "items", "id": "10", "optional": true},
-          {"key": "shippingAddress", "id": "11", "optional": true},
-          {"key": "billingAddress", "id": "12", "optional": true},
-          {"key": "shippingMethod", "id": "13", "optional": true},
-          {"key": "paymentMethod", "id": "14", "optional": true}
+          {"key": "checkout", "id": "10"},
+          {"key": "methods", "id": "20"}
         ],
         "output": [
           {"key": "methods", "id": "20"}
@@ -87,7 +71,7 @@
         "id": "@shopgate/payment",
         "path": "@shopgate/payment/payment/rememberPaymentMethod.js",
         "input": [
-          {"key": "paymentMethod", "id": "14", "optional": true}
+          {"key": "checkout", "id": "10"}
         ],
         "output": []
       }
