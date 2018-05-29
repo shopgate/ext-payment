@@ -1,6 +1,6 @@
-const CheckoutError = require('./CheckoutError')
+const PaymentError = require('./PaymentError')
 
-class ValidationError extends CheckoutError {
+class ValidationError extends PaymentError {
   constructor (error) {
     super()
 
