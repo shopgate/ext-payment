@@ -13,7 +13,7 @@
 module.exports = async (context, input) => {
   const totals = input.totals
 
-  if (!input.paymentMethods.length) {
+  if (!input.paymentMethods.length || !input.checkout.paymentMethod) {
     // no payment methods
     return {totals}
   }
