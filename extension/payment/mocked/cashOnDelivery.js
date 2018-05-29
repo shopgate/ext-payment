@@ -8,9 +8,9 @@ module.exports = async (context, input) => {
 
   let allow = true
 
-  if (input.shippingAddress && input.shippingAddress.countryCode) {
+  if (input.checkout.shippingAddress && input.checkout.shippingAddress.countryCode) {
     const allowedCountries = ['NL']
-    if (!allowedCountries.includes(input.shippingAddress.countryCode)) {
+    if (!allowedCountries.includes(input.checkout.shippingAddress.countryCode)) {
       allow = false
     }
   }
@@ -20,7 +20,7 @@ module.exports = async (context, input) => {
       id: 'cashondelivery',
       name: 'Cash on delivery',
       description: 'Pay when you receive products',
-      amount: 0,
+      amount: -100,
       // @TODO add icon
       icon: null
     })

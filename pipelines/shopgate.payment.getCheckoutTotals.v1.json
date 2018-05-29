@@ -1,0 +1,49 @@
+{
+  "version": "1",
+  "pipeline": {
+    "id": "shopgate.payment.getCheckoutTotals.v1",
+    "public": false,
+    "input": [
+      {"key": "checkout", "id": "10"},
+      {"key": "totals", "id": "11"}
+    ],
+    "output": [
+      {"key": "totals", "id": "11"}
+    ],
+    "steps": [
+      {
+        "type": "extension",
+        "id": "@shopgate/payment",
+        "path": "@shopgate/payment/checkout/validateGetTotals.js",
+        "input": [
+          {"key": "checkout", "id": "10"},
+          {"key": "totals", "id": "11"}
+        ],
+        "output": []
+      },
+      {
+        "type": "pipeline",
+        "id": "shopgate.checkout.getPaymentMethods.v1",
+        "input": [
+          {"key": "checkout", "id": "10"}
+        ],
+        "output": [
+          {"key": "methods", "id": "20"}
+        ]
+      },
+      {
+        "type": "extension",
+        "id": "@shopgate/payment",
+        "path": "@shopgate/payment/checkout/getTotals.js",
+        "input": [
+          {"key": "paymentMethods", "id": "20"},
+          {"key": "checkout", "id": "10"},
+          {"key": "totals", "id": "11"}
+        ],
+        "output": [
+          {"key": "totals", "id": "11"}
+        ]
+      }
+    ]
+  }
+}

@@ -8,9 +8,9 @@ module.exports = async (context, input) => {
 
   let allow = true
 
-  if (input.shippingAddress && input.shippingAddress.countryCode) {
+  if (input.checkout.shippingAddress && input.checkout.shippingAddress.countryCode) {
     const allowedCountries = ['DE', 'NL']
-    if (!allowedCountries.includes(input.shippingAddress.countryCode)) {
+    if (!allowedCountries.includes(input.checkout.shippingAddress.countryCode)) {
       allow = false
     }
   }
