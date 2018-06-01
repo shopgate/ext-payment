@@ -8,7 +8,7 @@ module.exports = async (context, input) => {
     id: 'paypal',
     name: 'Paypal',
     description: 'Fast payment with Paypal',
-    amount: 0,
+    amount: 2.50,
     // @TODO add icon
     icon: null
   })

@@ -8,7 +8,7 @@ module.exports = async (context, input) => {
     id: 'authorizenet',
     name: 'Authorize.Net',
     description: 'Fast payment with credit card',
-    amount: 0,
+    amount: 0.00,
     // @TODO add icon
     icon: null
   })

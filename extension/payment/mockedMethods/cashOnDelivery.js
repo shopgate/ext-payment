@@ -8,7 +8,7 @@ module.exports = async (context, input) => {
     id: 'cashondelivery',
     name: 'Cash on delivery',
     description: 'Pay when you receive products',
-    amount: -100,
+    amount: -1.00,
     // @TODO add icon
     icon: null
   })

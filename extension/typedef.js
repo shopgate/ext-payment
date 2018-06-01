@@ -49,7 +49,7 @@
  * @property {string} name
  * @property {string} description
  * @property {number} amount
- * @property {string} icon
+ * @property {string|undefined} icon
  * @property {boolean|undefined} selected
  */
 

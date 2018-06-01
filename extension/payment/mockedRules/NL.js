@@ -4,7 +4,7 @@
  * @returns {Promise<PaymentMethod[]>|PaymentMethod[]}
  */
 module.exports = async (context, input) => {
-  if (!input.checkout.paymentAddress || input.checkout.paymentAddress.countryCode !== 'DE') {
+  if (!input.checkout.billingAddress || input.checkout.billingAddress.countryCode !== 'NL') {
     return {paymentMethods: input.paymentMethods}
   }
 
