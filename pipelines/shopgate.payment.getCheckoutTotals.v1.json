@@ -28,7 +28,7 @@
           {"key": "checkout", "id": "10"}
         ],
         "output": [
-          {"key": "methods", "id": "20"}
+          {"key": "paymentMethods", "id": "20"}
         ]
       },
       {

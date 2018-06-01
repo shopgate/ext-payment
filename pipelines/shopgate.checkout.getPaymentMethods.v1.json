@@ -7,73 +7,98 @@
       {"key": "checkout", "id": "10"}
     ],
     "output": [
-      {"key": "methods", "id": "20"}
+      {"key": "paymentMethods", "id": "20"}
     ],
     "steps": [
       {
-        "type": "extension",
-        "id": "@shopgate/payment",
-        "path": "@shopgate/payment/payment/getPaymentMethods.js",
+        "type": "staticValue",
         "input": [],
-        "output": [
-          {"key": "methods", "id": "20"}
-        ]
+        "values": [{"key": "paymentMethods", "value": []}],
+        "output": [{"key": "paymentMethods", "id": "20"}]
       },
       {
         "type": "extension",
         "id": "@shopgate/payment",
-        "path": "@shopgate/payment/payment/mocked/paypal.js",
+        "path": "@shopgate/payment/payment/mockedMethods/authorizeNet.js",
         "input": [
           {"key": "checkout", "id": "10"},
-          {"key": "methods", "id": "20"}
+          {"key": "paymentMethods", "id": "20"}
         ],
         "output": [
-          {"key": "methods", "id": "20"}
+          {"key": "paymentMethods", "id": "20"}
         ]
       },
       {
         "type": "extension",
         "id": "@shopgate/payment",
-        "path": "@shopgate/payment/payment/mocked/authorizeNet.js",
+        "path": "@shopgate/payment/payment/mockedMethods/cashOnDelivery.js",
         "input": [
           {"key": "checkout", "id": "10"},
-          {"key": "methods", "id": "20"}
+          {"key": "paymentMethods", "id": "20"}
         ],
         "output": [
-          {"key": "methods", "id": "20"}
+          {"key": "paymentMethods", "id": "20"}
         ]
       },
       {
         "type": "extension",
         "id": "@shopgate/payment",
-        "path": "@shopgate/payment/payment/mocked/cashOnDelivery.js",
+        "path": "@shopgate/payment/payment/mockedMethods/paypal.js",
         "input": [
           {"key": "checkout", "id": "10"},
-          {"key": "methods", "id": "20"}
+          {"key": "paymentMethods", "id": "20"}
         ],
         "output": [
-          {"key": "methods", "id": "20"}
+          {"key": "paymentMethods", "id": "20"}
         ]
       },
       {
         "type": "extension",
         "id": "@shopgate/payment",
-        "path": "@shopgate/payment/payment/preselectPaymentMethod.js",
+        "path": "@shopgate/payment/payment/mockedRules/DE.js",
         "input": [
-          {"key": "methods", "id": "20"}
+          {"key": "checkout", "id": "10"},
+          {"key": "paymentMethods", "id": "20"}
         ],
         "output": [
-          {"key": "methods", "id": "20"}
+          {"key": "paymentMethods", "id": "20"}
         ]
       },
       {
         "type": "extension",
         "id": "@shopgate/payment",
-        "path": "@shopgate/payment/payment/rememberPaymentMethod.js",
+        "path": "@shopgate/payment/payment/mockedRules/NL.js",
         "input": [
-          {"key": "checkout", "id": "10"}
+          {"key": "checkout", "id": "10"},
+          {"key": "paymentMethods", "id": "20"}
         ],
-        "output": []
+        "output": [
+          {"key": "paymentMethods", "id": "20"}
+        ]
+      },
+      {
+        "type": "extension",
+        "id": "@shopgate/payment",
+        "path": "@shopgate/payment/payment/mockedRules/UK.js",
+        "input": [
+          {"key": "checkout", "id": "10"},
+          {"key": "paymentMethods", "id": "20"}
+        ],
+        "output": [
+          {"key": "paymentMethods", "id": "20"}
+        ]
+      },
+      {
+        "type": "extension",
+        "id": "@shopgate/payment",
+        "path": "@shopgate/payment/payment/setPaymentMethodSelection.js",
+        "input": [
+          {"key": "checkout", "id": "10"},
+          {"key": "paymentMethods", "id": "20"}
+        ],
+        "output": [
+          {"key": "paymentMethods", "id": "20"}
+        ]
       }
     ]
   }
