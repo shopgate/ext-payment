@@ -1,0 +1,37 @@
+{
+  "version": "1",
+  "pipeline": {
+    "id": "shopgate.checkout.getPaymentMethod.v1",
+    "public": true,
+    "input": [
+      {"key": "checkout", "id": "10"}
+    ],
+    "output": [
+      {"key": "paymentMethod", "id": "30", "optional": true}
+    ],
+    "steps": [
+      {
+        "type": "pipeline",
+        "id": "shopgate.checkout.getPaymentMethods.v1",
+        "input": [
+          {"key": "checkout", "id": "10"}
+        ],
+        "output": [
+          {"key": "paymentMethods", "id": "20"}
+        ]
+      },
+      {
+        "type": "extension",
+        "id": "@shopgate/payment",
+        "path": "@shopgate/payment/payment/extractPaymentMethod.js",
+        "input": [
+          {"key": "checkout", "id": "10"},
+          {"key": "paymentMethods", "id": "20"}
+        ],
+        "output": [
+          {"key": "paymentMethod", "id": "30", "optional": true}
+        ]
+      }
+    ]
+  }
+}

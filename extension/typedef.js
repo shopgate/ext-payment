@@ -44,32 +44,33 @@
  */
 
 /**
- * @typedef {Object} PaymentMethods
- * @property {PaymentMethod[]} methods
- */
-
-/**
  * @typedef {Object} PaymentMethod
  * @property {string} id
  * @property {string} name
  * @property {string} description
- * @property {number} amount - minor units
+ * @property {number} amount
  * @property {string} icon
- * @property {?boolean} selected
+ * @property {boolean|undefined} selected
+ */
+
+/**
+ * @typedef {Object} GetPaymentMethodsInput
+ * @property {Checkout} checkout
  */
 
 /**
  * @typedef {Object} PaymentMethodInput
- * @property {CheckoutInput} checkout
- * @property {PaymentMethod[]} methods
+ * @property {Checkout} checkout
+ * @property {PaymentMethod[]} paymentMethods
  */
 
 /**
- * @typedef {Object} CheckoutInput
- * @property {Object[]} items
- * @property {Object} shippingAddress
- * @property {string} shippingAddress.countryCode
- * @property {Object} billingAddress
- * @property {Object} shippingMethod
- * @property {Object} paymentMethod
+ * @typedef {Object} Checkout
+ * @property {?Object[]} items
+ * @property {?Object} shippingAddress
+ * @property {?string} shippingAddress.countryCode
+ * @property {?Object} billingAddress
+ * @property {?string} billingAddress.countryCode
+ * @property {?Object} shippingMethod
+ * @property {?Object} paymentMethod
  */
