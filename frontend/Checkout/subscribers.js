@@ -1,28 +1,30 @@
 import { main$ } from '@shopgate/pwa-common/streams/main';
 import fetchPaymentMethods from './action';
+import { getSelectedMethod } from './selectors';
 
 export default (subscribe) => {
-  const checkoutData$ = main$.filter(({ action }) => action.type === 'CHECKOUT_DATA');
+  const checkoutState$ = main$.filter(({ action }) => action.type === 'CHECKOUT_STATE');
   const paymentMethods$ = main$.filter(({ action }) => action.type === 'PAYMENT_METHODS');
   const selectPaymentMethod$ = main$.filter(({ action }) => action.type === 'SELECT_PAYMENT_METHOD');
 
-  subscribe(checkoutData$, ({ dispatch, getState, action }) => {
-    if (action.id === 'paymentMethod') {
-      return;
-    }
-    setTimeout(() => {
-      const { checkout } = getState().extensions['@shopgate/checkout/CheckoutReducers'];
-      fetchPaymentMethods(checkout)(dispatch);
-    }, 500);
+  /**
+   * Fetch payment methods when checkout state is changed
+   */
+  subscribe(checkoutState$, ({ dispatch, action }) => {
+    fetchPaymentMethods(action.checkout)(dispatch);
   });
 
   /**
-   * After receiving shipping methods,
+   * After receiving payment methods,
    * notify subscribers that we have default selection
    */
-  subscribe(paymentMethods$, ({ dispatch, action }) => {
-    // Find the first selected method
-    const method = action.methods.find(meth => meth.selected);
+  subscribe(paymentMethods$, ({ dispatch, getState, action }) => {
+    const selectedMethod = getSelectedMethod(getState());
+    if (selectedMethod) {
+      return;
+    }
+    // PreSelect first default method
+    const method = action.methods.find(payMethod => payMethod.selected);
     if (method) {
       dispatch({
         type: 'SELECT_PAYMENT_METHOD',
@@ -31,7 +33,12 @@ export default (subscribe) => {
     }
   });
 
-  subscribe(selectPaymentMethod$, ({ dispatch, action }) => {
+  subscribe(selectPaymentMethod$, ({ dispatch, getState, action }) => {
+    const selectedMethod = getSelectedMethod(getState());
+    if (selectedMethod && selectedMethod.id === action.method.id) {
+      // Already selected
+      return;
+    }
     dispatch({
       type: 'CHECKOUT_DATA',
       id: 'paymentMethod',
