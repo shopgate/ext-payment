@@ -91,6 +91,18 @@
       {
         "type": "extension",
         "id": "@shopgate/payment",
+        "path": "@shopgate/payment/payment/mockedRules/LimitCashOnDeliveryToHermes.js",
+        "input": [
+          {"key": "checkout", "id": "10"},
+          {"key": "paymentMethods", "id": "20"}
+        ],
+        "output": [
+          {"key": "paymentMethods", "id": "20"}
+        ]
+      },
+      {
+        "type": "extension",
+        "id": "@shopgate/payment",
         "path": "@shopgate/payment/payment/setPaymentMethodSelection.js",
         "input": [
           {"key": "checkout", "id": "10"},
