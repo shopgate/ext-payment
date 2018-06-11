@@ -6,9 +6,9 @@ import * as style from './style';
  * @return {*}
  */
 const Title = () => (
-  <h3 className={style.title}>
+  <div className={style.title}>
     <I18n.Text string="checkout.title" />
-  </h3>
+  </div>
 );
 
 export default Title;
