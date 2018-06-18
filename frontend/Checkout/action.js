@@ -1,6 +1,6 @@
 import PipelineRequest from '@shopgate/pwa-core/classes/PipelineRequest';
 
-export default checkout => (dispatch) => {
+export default (checkout = {}) => (dispatch) => {
   new PipelineRequest('shopgate.checkout.getPaymentMethods')
     .setInput({ checkout })
     .dispatch()
