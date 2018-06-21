@@ -10,6 +10,6 @@ module.exports = async (context, input) => {
 
   // payment rule for NL
   return {paymentMethods: input.paymentMethods.filter(paymentMethod => (
-    paymentMethod.id === 'authorizenet' || paymentMethod.id === 'paypal'
+    paymentMethod.id === 'authorizenet' || paymentMethod.id === 'cashondelivery' || paymentMethod.id === 'paypal'
   ))}
 }

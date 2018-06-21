@@ -101,11 +101,9 @@
         ]
       },
       {
-        "type": "extension",
-        "id": "@shopgate/payment",
-        "path": "@shopgate/payment/payment/setPaymentMethodSelection.js",
+        "type": "pipeline",
+        "id": "shopgate.shipping.preSelectPaymentMethod.v1",
         "input": [
-          {"key": "checkout", "id": "10"},
           {"key": "paymentMethods", "id": "20"}
         ],
         "output": [

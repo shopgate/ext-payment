@@ -8,6 +8,7 @@ export default (checkout = {}) => (dispatch) => {
       dispatch({
         type: 'PAYMENT_METHODS',
         methods: paymentMethods,
+        checkout,
       });
     });
 };
