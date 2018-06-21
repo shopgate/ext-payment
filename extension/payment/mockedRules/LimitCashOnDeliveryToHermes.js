@@ -4,7 +4,7 @@
  * @returns {Promise<PaymentMethod[]>|PaymentMethod[]}
  */
 module.exports = async (context, input) => {
-  if (input.checkout.shippingMethod && input.checkout.shippingMethod.id === 'hermes') {
+  if (!input.checkout.shippingMethod || input.checkout.shippingMethod.id === 'hermes') {
     return {paymentMethods: input.paymentMethods}
   }
 
