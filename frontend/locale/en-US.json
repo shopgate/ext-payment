@@ -1,5 +1,10 @@
 {
   "checkout": {
-    "title": "Payment Options"
+    "payment": {
+      "methods": {
+        "title": "Payment options"
+      }
+    }
   }
 }
+

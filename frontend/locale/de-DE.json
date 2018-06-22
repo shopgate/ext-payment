@@ -1,5 +1,9 @@
 {
   "checkout": {
-    "title": "Zahlungsarten"
- }
+    "payment": {
+      "methods": {
+        "title": "Zahlungsarten"
+      }
+    }
+  }
 }

@@ -7,7 +7,7 @@ import * as style from './style';
  */
 const Title = () => (
   <div className={style.title}>
-    <I18n.Text string="checkout.title" />
+    <I18n.Text string="checkout.payment.methods.title" />
   </div>
 );
 
