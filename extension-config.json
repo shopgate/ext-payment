@@ -10,7 +10,7 @@
     },
     {
       "type": "portals",
-      "id": "CheckoutShippingMethod",
+      "id": "CheckoutPaymentMethod",
       "path": "frontend/Checkout/index.jsx",
       "target": "checkout.payment_method"
     },
