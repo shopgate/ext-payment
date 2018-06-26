@@ -101,9 +101,22 @@
         ]
       },
       {
-        "type": "pipeline",
-        "id": "shopgate.shipping.preSelectPaymentMethod.v1",
+        "type": "extension",
+        "id": "@shopgate/payment",
+        "path": "@shopgate/payment/payment/rules/preSelectByCurrentSelection.js",
         "input": [
+          {"key": "checkout", "id": "10"},
+          {"key": "paymentMethods", "id": "20"}
+        ],
+        "output": [
+          {"key": "paymentMethods", "id": "20"}
+        ]
+      },
+      {
+        "type": "pipeline",
+        "id": "shopgate.payment.preSelectByLastOrder.v1",
+        "input": [
+          {"key": "checkout", "id": "10"},
           {"key": "paymentMethods", "id": "20"}
         ],
         "output": [

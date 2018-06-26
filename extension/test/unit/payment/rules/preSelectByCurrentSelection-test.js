@@ -1,8 +1,8 @@
 const assert = require('assert')
-const executeStep = require('../../../../payment/rules/preSelectByLastOrder')
+const executeStep = require('../../../../payment/rules/preSelectByCurrentSelection')
 const createContext = require('../../../mock/createContext')
 
-describe('preSelectByLastOrder', () => {
+describe('preSelectByCurrentSelection', () => {
   const mockedMethod1 = {
     id: 'paypal',
     name: 'Paypal',
@@ -27,7 +27,7 @@ describe('preSelectByLastOrder', () => {
     icon: null
   }
 
-  it('Should not select anything if no last order is available', async () => {
+  it('Should not select anything if no selection given', async () => {
     const context = createContext('user', () => null, () => {}, () => {}, 1)
     const input = {
       checkout: {},
@@ -56,10 +56,14 @@ describe('preSelectByLastOrder', () => {
     assert.deepEqual(output, expectedOutput)
   })
 
-  it('Should select payment method by order, if no current selection is available', async () => {
+  it('Should not select anything if out of selection range', async () => {
     const context = createContext('user', () => mockedMethod1.id, () => {}, () => {}, 1)
     const input = {
-      checkout: {},
+      checkout: {
+        paymentMethod: {
+          id: mockedMethod3.id
+        }
+      },
       paymentMethods: [
         mockedMethod1,
         mockedMethod2
@@ -75,7 +79,7 @@ describe('preSelectByLastOrder', () => {
 
     const expectedOutput = {
       paymentMethods: [
-        {...mockedMethod1, selected: true},
+        {...mockedMethod1, selected: false},
         {...mockedMethod2, selected: false}
       ]
     }
@@ -91,7 +95,7 @@ describe('preSelectByLastOrder', () => {
     assert.deepEqual(output, expectedOutput)
   })
 
-  it('Should not change any selection, if the current selection is available and valid', async () => {
+  it('Should keep the selection, if a valid one was given', async () => {
     const context = createContext('user', () => mockedMethod1.id, () => {}, () => {}, 1)
     const input = {
       checkout: {
@@ -130,17 +134,17 @@ describe('preSelectByLastOrder', () => {
     assert.deepEqual(output, expectedOutput)
   })
 
-  it('Should overwrite the current selection if it\'s outside of scope', async () => {
+  it('Should overwrite the current selection if any other preselection was set', async () => {
     const context = createContext('user', () => mockedMethod1.id, () => {}, () => {}, 1)
     const input = {
       checkout: {
         paymentMethod: {
-          id: mockedMethod3.id
+          id: mockedMethod1.id
         }
       },
       paymentMethods: [
-        mockedMethod1,
-        mockedMethod2
+        {...mockedMethod1, selected: false},
+        {...mockedMethod2, selected: true}
       ],
       orders: [
         {
