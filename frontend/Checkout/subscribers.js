@@ -76,21 +76,26 @@ export default (subscribe) => {
       return;
     }
 
+    const method = methods.find(payMethod => payMethod.selected);
+
     // Check if checkout method still available
     if (checkout.paymentMethod) {
       const stillExists = methods.find(m => m.id === checkout.paymentMethod.id);
       if (!stillExists) {
+        let data = { data: null };
+        if (method) {
+          data = method;
+        }
         dispatch({
           type: 'CHECKOUT_DATA',
           id: 'paymentMethod',
-          data: null,
+          data,
         });
       }
       return;
     }
 
     // PreSelect first default method from response
-    const method = methods.find(payMethod => payMethod.selected);
     if (method) {
       dispatch({
         type: 'SELECT_PAYMENT_METHOD',
