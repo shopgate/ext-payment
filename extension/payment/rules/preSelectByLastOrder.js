@@ -5,7 +5,7 @@
  */
 module.exports = async (context, input) => {
   // Keep current selection if valid
-  const current = input.paymentMethods.find(m => input.checkout.paymentMethod && m.id === input.checkout.paymentMethod.id);
+  const current = input.paymentMethods.find(m => input.checkout.paymentMethod && m.id === input.checkout.paymentMethod.id)
   if (current) {
     return {paymentMethods: input.paymentMethods}
   }
