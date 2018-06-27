@@ -1,6 +1,6 @@
 {
   "name": "@shopgate/payment",
-  "version": "2.2.1-beta.1",
+  "version": "2.2.1-beta.2",
   "description": "Shopgate Connect payment extension",
   "repository": {
     "type": "git",

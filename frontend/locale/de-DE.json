@@ -4,6 +4,9 @@
       "methods": {
         "title": "Zahlungsarten"
       }
+    },
+    "totals": {
+      "payment": "Zahlungsgebühr"
     }
   }
 }
