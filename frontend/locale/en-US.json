@@ -4,6 +4,9 @@
       "methods": {
         "title": "Payment options"
       }
+    },
+    "totals": {
+      "payment": "Payment fee"
     }
   }
 }

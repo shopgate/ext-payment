@@ -30,7 +30,6 @@ module.exports = async (context, input) => {
 
   totals.push({
     id: 'payment',
-    label: 'Payment fee',
     amount: paymentMethod.amount
   })
 
