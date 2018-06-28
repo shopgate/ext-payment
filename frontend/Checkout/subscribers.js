@@ -82,7 +82,7 @@ export default (subscribe) => {
     if (checkout.paymentMethod) {
       const stillExists = methods.find(m => m.id === checkout.paymentMethod.id);
       if (!stillExists) {
-        let data = { data: null };
+        let data = null;
         if (method) {
           data = method;
         }
