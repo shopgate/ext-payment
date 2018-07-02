@@ -39,11 +39,14 @@ export default (subscribe) => {
     }
   });
 
+  let fetchPaymentMethodsTimeout = null;
   /**
    * Refresh payment methods when checkout state is changed
    * Compare to stored context if action should be done
    */
   subscribe(checkoutState$, ({ dispatch, getState, action }) => {
+    clearTimeout(fetchPaymentMethodsTimeout);
+
     const { billingAddress, shippingMethod } = getContext(getState());
 
     let shouldRefresh = false;
@@ -60,7 +63,11 @@ export default (subscribe) => {
     }
 
     if (shouldRefresh) {
-      fetchPaymentMethods(action.checkout)(dispatch);
+      fetchPaymentMethodsTimeout = setTimeout(
+        dispatch,
+        700,
+        fetchPaymentMethods(action.checkout)
+      );
     }
   });
 
@@ -104,30 +111,13 @@ export default (subscribe) => {
     }
   });
 
-  let selectMethodTimeout = null;
-
-  /**
-   * @param {Object} args args
-   */
-  const selectPaymentMethodDelayed = ({ dispatch, method }) => {
+  subscribe(selectPaymentMethod$, ({ dispatch, action }) => {
     dispatch({
       type: 'CHECKOUT_DATA',
       id: 'paymentMethod',
       data: {
-        id: method.id,
+        id: action.method.id,
       },
     });
-  };
-
-  subscribe(selectPaymentMethod$, ({ dispatch, action }) => {
-    clearTimeout(selectMethodTimeout);
-    selectMethodTimeout = setTimeout(
-      selectPaymentMethodDelayed,
-      700,
-      {
-        dispatch,
-        method: action.method,
-      }
-    );
   });
 };
