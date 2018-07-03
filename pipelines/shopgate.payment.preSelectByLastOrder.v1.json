@@ -40,6 +40,17 @@
         "output": [
           {"key": "paymentMethods", "id": "10"}
         ]
+      },
+      {
+        "type": "errorCatchExtension",
+        "id": "@shopgate/payment",
+        "path": "@shopgate/payment/payment/rules/preSelectByLastOrderError.js",
+        "input": [
+          {"key": "paymentMethods", "id": "10"}
+        ],
+        "output": [
+          {"key": "paymentMethods", "id": "10"}
+        ]
       }
     ]
   }
