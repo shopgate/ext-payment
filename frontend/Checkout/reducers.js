@@ -4,8 +4,8 @@ export default (state = {}, action) => {
       return {
         methods: action.methods,
         context: {
-          shippingMethod: action.checkout.shippingMethod,
-          billingAddress: action.checkout.billingAddress,
+          shippingMethod: action.checkout.shippingMethod || null,
+          billingAddress: action.checkout.billingAddress || null,
         },
       };
 
@@ -26,10 +26,6 @@ export default (state = {}, action) => {
       };
 
     default:
-      return {
-        methods: null,
-        context: null,
-        ...state,
-      };
+      return state;
   }
 };
