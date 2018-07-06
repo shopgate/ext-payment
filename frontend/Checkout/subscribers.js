@@ -45,9 +45,16 @@ export default (subscribe) => {
   subscribe(checkoutState$, ({ dispatch, getState, action }) => {
     clearTimeout(fetchPaymentMethodsTimeout);
 
-    const { billingAddress, shippingMethod } = getContext(getState());
+    const context = getContext(getState());
+    if (!context) {
+      // Do not refresh methods on unknown context
+      return;
+    }
+
+    const { billingAddress, shippingMethod } = context;
 
     let shouldRefresh = false;
+
     if (action.checkout.shippingMethod) {
       if (!shippingMethod || shippingMethod.id !== action.checkout.shippingMethod.id) {
         shouldRefresh = true;
